@@ -9,7 +9,7 @@ class Hero(db.Model):
     name = db.Column(db.String, nullable = False)
     super_name = db.Column(db.String, nullable = False)
 
-    hero_powers = db.relationship('HeroPower', backref = 'hero', cascade = 'all, delete')
+    hero_powers = db.relationship('HeroPower', backref = 'hero')
 
     def to_dict(self):
         return {
@@ -33,7 +33,7 @@ class Power(db.Model):
     name = db.Column(db.String, nullable = False)
     description = db.Column(db.String, nullable = False)
 
-    hero_powers = db.relationship('HeroPower', backref = 'power', cascade = 'all, delete')
+    hero_powers = db.relationship('HeroPower', backref = 'power')
 
     @validates('description')
     def validate_description(self, key, description):
