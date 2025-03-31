@@ -42,3 +42,53 @@ A Flask API that tracks superheroes and their superpowers. This project follows 
    ```sh
    flask db upgrade
    ```
+
+## Usage
+Run the Flask application:
+```sh
+python app.py
+```
+The API will be accessible at `http://127.0.0.1:5555/`.
+
+## API Endpoints
+| Method | Endpoint              | Description                  |
+|--------|-----------------------|------------------------------|
+| GET    | `/heroes`             | Get all heroes               |
+| GET    | `/heroes/:id`         | Get a hero by ID             |
+| GET    | `/powers`             | Get all superpowers          |
+| GET    | `/powers/:id`         | Get a superpower by ID       |
+| PATCH  | `/powers/:id`         | Update a superpower          |
+| POST   | `/hero_powers`        | Assign a power to a hero     |
+
+
+## Database Models
+- **Hero**: Represents a superhero with attributes like name and identity.
+- **Power**: Represents a superpower with attributes like name and description.
+- **HeroPower**: A join table linking heroes to their superpowers with an assigned strength level.
+
+## Seeding the Database
+To seed the database with sample data, run:
+```sh
+python seed.py
+```
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request.
+1. Fork the repository
+2. Create a new branch 
+    ```sh
+    git checkout -b Your-Feature-Name
+    ```
+3. Make your changes
+4. Commit changes 
+    ```sh
+    git commit -m 'Added new feature'
+    ```
+5. Push to GitHub 
+    ```sh
+    git push origin Your-Feature-Name
+    ```
+6. Submit a pull request
+
+## License
+This project is licensed under the MIT License.
