@@ -30,6 +30,13 @@ def get_powers():
     powers = Power.query.all()
     return jsonify([power.to_dict() for power in powers])
 
+@app.route('/powers/<int:id>', methods=['GET'])
+def get_power(id):
+    power = Power.query.get(id)
+    if not power:
+        return jsonify({'error': 'Power not found'}), 404
+    return jsonify(power.to_dict())
+
 @app.route('/powers/<int:id>', methods = ['PATCH'])
 def update_power(id):
     power = Power.query.get(id)
@@ -62,4 +69,4 @@ def create_hero_power():
         return jsonify({'error': str( e )}), 400
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug = True, port = 5555)

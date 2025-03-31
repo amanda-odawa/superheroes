@@ -15,7 +15,16 @@ class Hero(db.Model):
         return {
             'id':self.id,
             'name':self.name,
-            'super_name':self.super_name
+            'super_name':self.super_name,
+            'hero_powers':[
+                {
+                    'id': hp.id,
+                    'hero_id': hp.hero_id,
+                    'power_id': hp.power_id,
+                    'strength': hp.strength,
+                    'power': hp.power.to_dict()
+                } for hp in self.hero_powers
+            ]
         }
     
 class Power(db.Model):
@@ -51,3 +60,17 @@ class HeroPower(db.Model):
         if strength not in ['Strong', 'Weak', 'Average']:
             raise ValueError('Strength must be one of the following values: Strong, Weak, Average')
         return strength
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'hero_id': self.hero_id,
+            'power_id': self.power_id,
+            'strength': self.strength,
+            'hero': {
+                'id': self.hero.id,
+                'name': self.hero.name,
+                'super_name': self.hero.super_name
+            },
+            'power': self.power.to_dict()
+        }
