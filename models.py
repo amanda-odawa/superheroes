@@ -32,6 +32,13 @@ class Power(db.Model):
             raise ValueError('Description must be present and at least 20 characters long')
         return description
     
+    def to_dict(self):
+        return {
+            'description':self.description,
+            'id':self.id,
+            'name':self.name
+        }
+    
 class HeroPower(db.Model):
     __tablename__ = 'hero_powers'
     id = db.Column(db.Integer, primary_key = True)
